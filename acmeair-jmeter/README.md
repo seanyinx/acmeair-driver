@@ -171,6 +171,3 @@ The HTTPSampler.port property should be changed to be 3000 (or whichever port th
 ```text
 %JMETER_DIR%/bin/jmeter -DusePureIDs=true -n -t AcmeAir.jmx -j AcmeAir1.log -l AcmeAir1.jtl
 ```
-
-
-
