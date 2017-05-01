@@ -16,13 +16,7 @@
 package com.acmeair.jmeter.functions;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import org.apache.jmeter.engine.util.CompoundVariable;
 import org.apache.jmeter.functions.AbstractFunction;
@@ -41,7 +35,7 @@ public class GenerateDateFunction extends AbstractFunction {
 	public String execute(SampleResult arg0, Sampler arg1)
 			throws InvalidVariableException {
 		SimpleDateFormat date_format = new SimpleDateFormat(
-				"EEE MMM dd 00:00:00 z yyyy");
+				"EEE, dd MMM yyyy HH:mm:ss zzz", Locale.US);
 		if (parameters.get(0).execute().equalsIgnoreCase("from")) {
 			Calendar aDay = Calendar.getInstance();
 			aDay.add(Calendar.DATE, new Random().nextInt(6));
