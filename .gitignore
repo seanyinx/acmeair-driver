@@ -6,3 +6,6 @@ build/
 .classpath
 .project
 .gradle
+.jtl
+.log
+.idea/
