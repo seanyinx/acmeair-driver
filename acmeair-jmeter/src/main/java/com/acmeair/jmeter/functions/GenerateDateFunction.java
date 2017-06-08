@@ -16,6 +16,9 @@
 package com.acmeair.jmeter.functions;
 
 import java.text.SimpleDateFormat;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import org.apache.jmeter.engine.util.CompoundVariable;
@@ -39,11 +42,11 @@ public class GenerateDateFunction extends AbstractFunction {
 		if (parameters.get(0).execute().equalsIgnoreCase("from")) {
 			Calendar aDay = Calendar.getInstance();
 			aDay.add(Calendar.DATE, new Random().nextInt(6));
-			return date_format.format(aDay.getTime()).toString();
+			return isoDateTime(aDay);
 		} else if (parameters.get(0).execute().equalsIgnoreCase("return")) {
 			Calendar aDay = Calendar.getInstance();
 			aDay.add(Calendar.DATE, new Random().nextInt(7) + 6);
-			return date_format.format(aDay.getTime()).toString();
+			return isoDateTime(aDay);
 		}
 		return "";
 	}
@@ -60,6 +63,11 @@ public class GenerateDateFunction extends AbstractFunction {
 
 	public List<String> getArgumentDesc() {
 		return DESC;
+	}
+
+	private String isoDateTime(Calendar aDay) {
+		return OffsetDateTime.ofInstant(aDay.getTime().toInstant(), ZoneId.systemDefault())
+				.format(DateTimeFormatter.ISO_INSTANT);
 	}
 
 }
